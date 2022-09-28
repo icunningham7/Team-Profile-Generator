@@ -2,9 +2,8 @@ import { Employee } from "./employee.js";
 
 class Manager extends Employee {
     constructor(name, id, email, office) {
-        super(name, id, email);
+        super(name, id, email, 'Manager');
         this.office = `Office Number: ${office}`;
-        this.role = 'Manager';
     }
 
     getContact() { return this.office };

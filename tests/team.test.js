@@ -6,78 +6,67 @@ import { Intern } from "../scripts/intern.js";
 
 describe('Employee', () => {
     it("should require name, id, and email arguments", () => {
-        let err = new Error('Invalid Employee');
-        let empl = new Employee();
-
-        expect(empl).toThrowError(err);
+        expect(() => {
+            new Employee()
+        }).toThrow(new Error('Invalid Employee'));
     });
     it("should return the employee's name", () => {
         let empl = new Employee('fakeName', 12, 'test@place.com');
-        let emplName = empl.getName();
 
-        expect(emplName).toEqual('fakeName');
+        expect(empl.getName()).toEqual('fakeName');
     });
     it("should return the employee's id", () => {
         let empl = new Employee('name', 12, 'test@place.com');
-        let emplId = empl.getId();
 
-        expect(emplId).toEqual(12);
+        expect(empl.getId()).toEqual(12);
     });
     it("should return the employee's email", () => {
         let empl = new Employee('name', 12, 'test@place.com');
-        let emplEmail = empl.getEmail();
 
-        expect(emplEmail).toEqual('Email: <a href="mailto:test@place.com">test@place.com</a>');
+        expect(empl.getEmail()).toEqual('Email: <a href="mailto:test@place.com">test@place.com</a>');
     });
     it("should return the employee's role", () => {
         let empl = new Employee('name', 12, 'test@place.com');
-        let emplRole = empl.role;
 
-        expect(emplRole).toEqual('Employee');
+        expect(empl.role).toEqual('Employee');
     });
 });
 
 describe('Manager', () => {
     it("should return the employee's contact information", () => {
-        let empl = () => new Manager('fakeName', 12, 'test@place.com', 'H23');
-        let emplContact = empl.getContact();
+        let empl = new Manager('fakeName', 12, 'test@place.com', 'H23');
 
-        expect(emplContact).toEqual('Office Number: H23');
+        expect(empl.getContact()).toEqual('Office Number: H23');
     });
     it("should return the employee's role", () => {
-        let empl = () => new Employee('name', 12, 'test@place.com', 'H23');
-        let emplRole = empl.role;
+        let empl = new Manager('name', 12, 'test@place.com', 'H23');
 
-        expect(emplRole).toEqual('Manager');
+        expect(empl.role).toEqual('Manager');
     });
 });
 
 describe('Engineer', () => {
     it("should return the employee's contact information", () => {
-        let empl = () => new Engineer('fakeName', 12, 'test@place.com', 'username');
-        let emplContact = empl.getContact();
+        let empl = new Engineer('fakeName', 12, 'test@place.com', 'username');
 
-        expect(emplContact).toEqual('Github: <a href="https://github.com/username">username</a>');
+        expect(empl.getContact()).toEqual('Github: <a href="https://github.com/username">username</a>');
     });
     it("should return the employee's role", () => {
-        let empl = () => new Engineer('name', 12, 'test@place.com', 'username');
-        let emplRole = empl.role;
+        let empl = new Engineer('name', 12, 'test@place.com', 'username');
 
-        expect(emplRole).toEqual('Engineer');
+        expect(empl.role).toEqual('Engineer');
     });
 });
 
 describe('Intern', () => {
     it("should return the employee's contact information", () => {
-        let empl = () => new Intern('fakeName', 12, 'test@place.com', 'schoolName');
-        let emplContact = empl.getContact();
+        let empl = new Intern('fakeName', 12, 'test@place.com', 'schoolName');
 
-        expect(emplContact).toEqual('School: schoolName');
+        expect(empl.getContact()).toEqual('School: schoolName');
     });
     it("should return the employee's role", () => {
-        let empl = () => new Intern('name', 12, 'test@place.com', 'schoolName');
-        let emplRole = empl.role;
+        let empl = new Intern('name', 12, 'test@place.com', 'schoolName');
 
-        expect(emplRole).toEqual('Intern');
+        expect(empl.role).toEqual('Intern');
     });
 });

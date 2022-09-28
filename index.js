@@ -122,7 +122,7 @@ export async function addTeamMember() {
 }
 
 export async function buildTeamMember(role) {
-    const teamMember = {};
+    let teamMember;
     let questionSet;
     switch (role.toLowerCase()) {
         case 'manager':
@@ -140,19 +140,15 @@ export async function buildTeamMember(role) {
     }
     await inquirer.prompt(questionSet)
         .then((answers) => {
-            teamMember.role = role;
-            teamMember.name = answers.memberName;
-            teamMember.id = answers.memberId;
-            teamMember.email = `Email <a href="mailto:${answers.memberEmail}">${answers.memberEmail}</a>`;
             switch (role.toLowerCase()) {
                 case 'manager':
-                    teamMember.contact = `Office Number: ${answers.memberOffice}`;
+                    teamMember = new Manager(answers.memberName, answers.memberId, answers.memberEmail, answers.memberOffice);
                     break;
                 case 'engineer':
-                    teamMember.contact = `Github: <a href="https://github.com/${answers.memberGithub}">${answers.memberGithub}</a>`;
+                    teamMember = new Engineer(answers.memberName, answers.memberId, answers.memberEmail, answers.memberGithub);
                     break;
                 case 'intern':
-                    teamMember.contact = `School: ${answers.memberSchool}`;
+                    teamMember = new Intern(answers.memberName, answers.memberId, answers.memberEmail, answers.memberSchool);
                     break;
 
                 default:
@@ -188,7 +184,7 @@ export function cardBuilder(teamMember) {
                                 </tr>
                                 <tr>
                                     <td class="border border-slate-700 p-1">
-                                        ${teamMember.contact}
+                                        ${teamMember.getContact()}
                                     </td>
                                 </tr>
                             </tbody>
@@ -242,11 +238,4 @@ async function init() {
 
 }
 
-// init();
-
-const empl = new Employee('fakeName', 12, 'test@place.com');
-console.log(empl);
-console.log(empl.role);
-console.log(typeof(empl.role));
-
-let empl2 = new Employee();
+init();
