@@ -6,6 +6,7 @@ class Intern extends Employee {
         this.school = `School: ${school}`;
     }
 
+    getSchool() { return this.getContact() };
     getContact() { return this.school };
 }
 

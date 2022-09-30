@@ -6,6 +6,7 @@ class Engineer extends Employee {
         this.github = `Github: <a href="https://github.com/${github}">${github}</a>`;
     }
 
+    getGithub() { return this.getContact() };
     getContact() { return this.github };
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "team-profile-generator",
-  "description": "## Your Task",
+  "description": "A CLI for building a team roster page",
   "version": "1.0.0",
   "type": "module",
   "main": "tailwind.config.js",
